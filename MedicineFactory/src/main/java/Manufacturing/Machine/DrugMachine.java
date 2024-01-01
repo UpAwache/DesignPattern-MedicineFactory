@@ -11,9 +11,9 @@ import java.util.List;
  */
 public abstract class DrugMachine {
 
-    public abstract void preTreat(Drug can);
+    public abstract void preTreat(Drug drug);
 
-    public abstract void fill(Drug can, Ingredient... ingredients);
+    public abstract void fill(Drug drug, Ingredient... ingredients);
 
-    public abstract void can(Drug can);
+    public abstract void drug(Drug drug);
 }

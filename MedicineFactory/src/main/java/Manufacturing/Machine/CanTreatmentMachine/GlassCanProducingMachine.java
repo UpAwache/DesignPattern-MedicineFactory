@@ -30,7 +30,7 @@ public class GlassCanProducingMachine extends DrugMachine {
     }
 
     @Override
-    public void can(Drug can) {
+    public void drug(Drug can) {
         can.getCanned();
     }
 

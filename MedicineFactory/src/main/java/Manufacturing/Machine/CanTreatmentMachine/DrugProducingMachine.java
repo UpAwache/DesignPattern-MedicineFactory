@@ -14,21 +14,21 @@ import java.util.List;
 public class DrugProducingMachine extends DrugMachine {
 
     @Override
-    public void preTreat(Drug can) {
-        can.getDisinfection();
+    public void preTreat(Drug drug) {
+        drug.getDisinfection();
     }
 
     @Override
-    public void fill(Drug can, Ingredient... ingredients) {
+    public void fill(Drug drug, Ingredient... ingredients) {
         for (Ingredient i :
                 ingredients) {
-            can.addIngredient(i);
+            drug.addIngredient(i);
         }
     }
 
     @Override
-    public void can(Drug can) {
-        can.getCanned();
+    public void drug(Drug drug) {
+        drug.getCanned();
     }
 
     private DrugProducingMachine() {

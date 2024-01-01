@@ -71,7 +71,7 @@ public class CandiedAppleLine extends AutomatedLine {
                 Drug can = GlassCanFactory.getInstance().createSmallCan("CandiedApple");
                 ironCanProducingMachine.preTreat(can);
                 ironCanProducingMachine.fill(can, candiedApple);
-                ironCanProducingMachine.can(can);
+                ironCanProducingMachine.drug(can);
                 product.add(can);
             } catch (IndexOutOfBoundsException e) {
                 IOManager.getInstance().errorMassage(
@@ -98,7 +98,7 @@ public class CandiedAppleLine extends AutomatedLine {
         glassCanProducingMachine.preTreat(can);
         Ingredient candiedApple = candiedAppleMachine.combine(new Apple(), new Sugar());
         glassCanProducingMachine.fill(can, candiedApple);
-        glassCanProducingMachine.can(can);
+        glassCanProducingMachine.drug(can);
         return can;
     }
 }

@@ -65,7 +65,7 @@ public class PeachLine implements FruitLine {
             Drug can=GlassCanFactory.getInstance().createBigCan("Peach");
             glassCanProducingMachine.preTreat(can);
             glassCanProducingMachine.fill(can,ingredient);
-            glassCanProducingMachine.can(can);
+            glassCanProducingMachine.drug(can);
             product.add(can);
         }
         IOManager.getInstance().print(
@@ -90,7 +90,7 @@ public class PeachLine implements FruitLine {
         glassCanProducingMachine.preTreat(can);
         Ingredient peach =new Peach();
         glassCanProducingMachine.fill(can, peach);
-        glassCanProducingMachine.can(can);
+        glassCanProducingMachine.drug(can);
         return can;
     }
 }

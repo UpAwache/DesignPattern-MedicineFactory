@@ -63,7 +63,7 @@ public class HerringLine implements FreshLine {
             Drug can= IronCanFactory.getInstance().createBigCan("Herring");
             ironCanProducingMachine.preTreat(can);
             ironCanProducingMachine.fill(can,ingredient);
-            ironCanProducingMachine.can(can);
+            ironCanProducingMachine.drug(can);
             product.add(can);
         }
         IOManager.getInstance().print(
@@ -88,7 +88,7 @@ public class HerringLine implements FreshLine {
         ironCanProducingMachine.preTreat(can);
         Ingredient herring =new Herring();
         ironCanProducingMachine.fill(can, herring);
-        ironCanProducingMachine.can(can);
+        ironCanProducingMachine.drug(can);
         return can;
     }
 }
