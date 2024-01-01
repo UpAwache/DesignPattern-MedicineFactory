@@ -16,13 +16,6 @@ import Storage.TransportationCan;
 
 import java.util.ArrayList;
 
-/**
- * 该类为库存管理部门与运输部门沟通的中介者
- * 中介者模式
- *
- * @author 王立友
- * @date 2021/10/17 16:10
- */
 public class DepartmentMediator {
 
 
@@ -36,35 +29,23 @@ public class DepartmentMediator {
         return departmentMediator;
     }
 
-    /**
-     * 库存管理部门
-     */
+    //库存管理部门
     InventoryDepartment inventoryDepartment = InventoryDepartment.getInstance();
-    /**
-     * 运输管理部门
-     */
+
+    //运输管理部门
     TransportDepartment transportDepartment = TransportDepartment.getInstance();
-    /**
-     * 包装管理部门
-     */
+    
+    //包装管理部门
     WrappingDepartment wrappingDepartment = WrappingDepartment.getInstance();
-    /**
-     * 订单中心
-     */
+    
+    //订单中心
     OrderCenter orderCenter = OrderCenter.getInstance();
-    /**
-     * 生产管理部门
-     */
+    
+    //生产管理部门
     ProductDepartment productDepartment = ProductDepartment.getInstance();
 
-    /**
-     * 中介者的运输罐头的实现，通过调用运输管理部门的接口，实现相关操作
-     * TODO：待完成
-     *
-     * @param transportationCan :  运输产品信息
-     * @author "王立友" "吴英豪"
-     * @date 2021-10-26 0:02
-     */
+    
+    //通过调用运输管理部门的接口，实现相关操作
     public void transportCans(TransportationCan transportationCan) {
         IOManager.getInstance().print("实现中介者模式: 将运输包裹分配运输部门,通知运输部门运输货物.",
                 "實現中介者模式: 將運輸包裹分配運輸部門,通知運輸部門運輸貨物.",
@@ -72,14 +53,8 @@ public class DepartmentMediator {
         transportDepartment.transportCans(transportationCan);
     }
 
-    /**
-     * 中介者的生产罐头的实现，通过调用生产管理部门的接口，实现相关操作
-     *
-     *
-     * @param orderCanInformations :  待生产的罐头列表信息;
-     * @author "王立友"
-     * @date 2021-10-17 21:05
-     */
+    
+    //通过调用生产管理部门的接口，实现相关操作
     public void productCans(ArrayList<OrderCanInformation> orderCanInformations) {
         IOManager.getInstance().print("实现中介者模式: 将待生产的订单罐头信息分配给生产部门,通知生产部门生产罐头",
                 "實現中介者模式: 將待生產的訂單罐頭信息分配給生產部門,通知生產部門生產罐頭",
@@ -90,19 +65,14 @@ public class DepartmentMediator {
 
     /****************** InventoryDepartment Interface **********************/
 
-    /**
-     * 指定由生产部门调用实现对生产好的罐头的入库.
-     *
-     * @param stockCans : 生产好的罐头列表
-     * @author "王立友"
-     * @date 2021-10-17 21:10
-     */
+    
+    //生产部门调用实现对生产好的药品的入库.
     public void addCanInventory(ArrayList<StockCan> stockCans) {
         /**
          * 利用中介者来告诉库存管理部门补充货物的数量;
          */
-        IOManager.getInstance().print("实现中介者模式: 已经通知库存管理部门对生产好的罐头进行存储",
-                "實現中介者模式: 已經通知庫存管理部門對生產好的罐頭進行存儲",
+        IOManager.getInstance().print("实现中介者模式: 已经通知库存管理部门对生产好的药品进行存储",
+                "實現中介者模式: 已經通知庫存管理部門對生產好药品的進行存儲",
                 "Implement the intermediary pattern: The inventory management department has been notified to store the produced cans.");
         inventoryDepartment.addCanInventory(stockCans);
         /**
@@ -111,13 +81,8 @@ public class DepartmentMediator {
         inventoryDepartment.reviewOrder();
     }
 
-    /**
-     * 提供给订单管理部门的接口，调用实现对订单的处理与添加到待办队列;
-     *
-     * @param order :
-     * @author "王立友"
-     * @date 2021-10-17 23:29
-     */
+    
+    //提供给订单管理部门的接口，调用实现对订单的处理与添加到待办队列;
     public void handleOrder(Order order) {
         /**
          * 利用中介者来告诉库存管理部门这个未处理的订单;
@@ -127,22 +92,15 @@ public class DepartmentMediator {
                 "# Using the intermediary pattern: The inventory management department has been notified to process the order, the order number is "+order.getOrderId());
         inventoryDepartment.addOrder(order);
 
-        /**
-         * 再添加新的订单后督促库存管理部门再一次进行订单扫描;
-         */
+        
+        //再添加新的订单后督促库存管理部门再一次进行订单扫描;
         inventoryDepartment.reviewOrder();
     }
 
     /********************* WrappingDepartment Interface ***********************/
 
-    /**
-     * 供生产部门调用的包装罐头的接口，输入一个罐头可以返回一个包装好的罐头;
-     *
-     * @param can :
-     * @return : Marketing.Wrapping.WrappedCan
-     * @author "王立友"
-     * @date 2021-10-24 17:05
-     */
+  
+    //供生产部门调用的包装药品的接口，输入一个药品可以返回一个包装好的药品;
     public WrappedCan wrapCan(Drug can) {
 
         WrappedCan wrappedCan = wrappingDepartment.wrapCan(can);
@@ -150,38 +108,21 @@ public class DepartmentMediator {
     }
 
     /********************* OrderCenter Interface ***********************/
-    /**
-     * 委托中介者来获取待处理（已下单状态）的订单列表，方便运输中心调用
-     *
-     * @return : java.util.ArrayList<Marketing.OrderEnity.Order>
-     * @author 梁乔
-     * @date 11:17 2021-10-24
-     */
+    
+    //委托中介者来获取待处理（已下单状态）的订单列表，方便运输中心调用
     public ArrayList<Order> getPendingOrders() {
         return orderCenter.getPendingOrders();
     }
 
-    /**
-     * 按照订单id搜索某一订单
-     *
-     * @param OrderId : 要搜索的订单id
-     * @return : Marketing.OrderEnity.Order
-     * @author
-     * @date 14:45 2021-10-24
-     */
+    
+    //按照订单id搜索某一订单
     public Order orderExists(Long OrderId) {
         return orderCenter.orderExists(OrderId);
     }
 
 
-    /**
-     * 完成一个订单的生产
-     *
-     * @param orderId :订单ID
-     * @return : boolean
-     * @author 梁乔
-     * @date 20:27 2021-10-16
-     */
+    
+    // 完成一个订单的生产
     public boolean completeProductionOfOneOrder(Long orderId) {
         IOManager.getInstance().print(
                 "实现中介者模式: 通知订单中心对订单编号为" + orderId + "的订单修改为取货完成状态",
@@ -193,14 +134,8 @@ public class DepartmentMediator {
     }
 
 
-    /**
-     * 开始运输某一订单
-     *
-     * @param orderId :订单ID
-     * @return : boolean
-     * @author 梁乔
-     * @date 14:51 2021-10-24
-     */
+    
+    //开始运输某一订单
     public boolean startToTransportOneOrder(Long orderId) {
         IOManager.getInstance().print(
                 "实现中介者模式: 通知订单中心对订单编号为" + orderId + "的订单修改为开始运输状态",
@@ -211,14 +146,8 @@ public class DepartmentMediator {
         return orderCenter.startToTransportOneOrder(orderId);
     }
 
-    /**
-     * 交付一个订单
-     *
-     * @param orderId : 订单ID
-     * @return : boolean
-     * @author 梁乔
-     * @date 15:02 2021-10-24
-     */
+    
+    //交付一个订单
     public boolean deliverOneOrder(Long orderId) {
         IOManager.getInstance().print(
                 "实现中介者模式: 通知订单中心对订单编号为" + orderId + "的订单修改为交付状态",
