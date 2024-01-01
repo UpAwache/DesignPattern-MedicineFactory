@@ -698,9 +698,9 @@ public class MedicineFactory {
             );
 
             IOManager.getInstance().print(
-                    "[1 - 抽象工厂模式]\t[2 - 责任链模式]\t[3 - 工厂方法模式]\t[4 - 原型模式]\t[5 - 单例模式]",
-                    "[1 - 抽象工廠模式]\t[2 - 责任链模式]\t[3 - 工廠方法模式]\t[4 - 原型模式]\t[5 - 單例模式]",
-                    "[1 - Abstract Factory]\t[2 - Builder]\t[3 - Factory Method]\t[4 - Prototype]\t[5 - Singleton]"
+                    "[1 - 访问者模式]\t[2 - 责任链模式]\t[3 - 黑板模式]\t[4 - 原型模式]\t[5 - 单例模式]",
+                    "[1 - 访问者模式]\t[2 - 责任链模式]\t[3 - 黑板模式]\t[4 - 原型模式]\t[5 - 單例模式]",
+                    "[1 - Visitor]\t[2 - Builder]\t[3 - Blackboard]\t[4 - Prototype]\t[5 - Singleton]"
             );
 
             IOManager.getInstance().print(
@@ -751,13 +751,13 @@ public class MedicineFactory {
 
             switch (selectedOperation){
                 case 1:
-                    ProductDepartment.main(args);
+                    VisitorTest.main(args);
                     break;
                 case 2:
                     ChainOfResponsibilityTest.main(args);
                     break;
                 case 3:
-                    ProductDepartment.main(args);
+                    BlackBoardTest.main(args);
                     break;
                 case 4:
                     PrototypeTest.main(args);
@@ -767,6 +767,7 @@ public class MedicineFactory {
                     break;
                 case 6:
                     IteratorPatternTest.main(args);
+                    break;
                 case 7:
                     MultitonTest.main(args);
                     break;
@@ -780,7 +781,7 @@ public class MedicineFactory {
                     CompositeTest.main(args);
                     break;
                 case 11:
-                    DecoratorTest.main(args);
+                    InventoryDriver.main(args);
                     break;
                 case 12:
                     Manufacturing.ProductLine.Pretreatment.Test.FacadeTest.main(args);
