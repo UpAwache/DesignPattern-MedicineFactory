@@ -2,7 +2,7 @@ package Manufacturing.Machine.CanTreatmentMachine;
 
 import Manufacturing.CanEntity.Can;
 import Manufacturing.Ingredient.Ingredient;
-import Manufacturing.Machine.CanMachine;
+import Manufacturing.Machine.DrugMachine;
 import Presentation.Protocol.IOManager;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author 卓正一
  * @since  2021/10/30 10:21 PM
  */
-public class GlassCanProducingMachine extends CanMachine {
+public class GlassCanProducingMachine extends DrugMachine {
 
     @Override
     public void preTreat(Can can) {

@@ -3,8 +3,8 @@ package Manufacturing.ProductLine.Line;
 import Manufacturing.CanEntity.Can;
 import Manufacturing.Ingredient.ConcreteIngredient.Herring;
 import Manufacturing.Ingredient.Ingredient;
-import Manufacturing.Machine.CanMachine;
-import Manufacturing.Machine.CanTreatmentMachine.IronCanProducingMachine;
+import Manufacturing.Machine.DrugMachine;
+import Manufacturing.Machine.CanTreatmentMachine.DrugProducingMachine;
 import Manufacturing.Machine.GeneralMachine.HerringFilterMachine;
 import Manufacturing.ProductLine.AbstractCanFactory.IronCanFactory;
 import Manufacturing.ProductLine.FreshLine;
@@ -25,7 +25,7 @@ public class HerringLine implements FreshLine {
     private PretreatmentApp pretreatmentApp = new PretreatmentApp(new HerringFilterMachine());
 
     private List<Ingredient> ingredients=new ArrayList<>();
-    private final CanMachine ironCanProducingMachine = IronCanProducingMachine.getInstance();
+    private final DrugMachine ironCanProducingMachine = DrugProducingMachine.getInstance();
     @Override
     public List<Ingredient> preTreat(List<Ingredient> ingredientList) {
 
@@ -83,7 +83,7 @@ public class HerringLine implements FreshLine {
     }
 
     public static Can produceSample() {
-        CanMachine ironCanProducingMachine = IronCanProducingMachine.getInstance();
+        DrugMachine ironCanProducingMachine = DrugProducingMachine.getInstance();
         Can can = IronCanFactory.getInstance().createBigCan("Herring");
         ironCanProducingMachine.preTreat(can);
         Ingredient herring =new Herring();

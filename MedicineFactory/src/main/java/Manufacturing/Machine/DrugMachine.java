@@ -8,11 +8,8 @@ import java.util.List;
 
 /**
  * 罐头机器，处理罐头用。
- *
- * @author 卓正一
- * @since  2021/10/28 12:21 AM
  */
-public abstract class CanMachine {
+public abstract class DrugMachine {
 
     public abstract void preTreat(Can can);
 

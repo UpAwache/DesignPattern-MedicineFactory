@@ -3,8 +3,8 @@ package Manufacturing.ProductLine.Line;
 import Manufacturing.CanEntity.Can;
 import Manufacturing.Ingredient.ConcreteIngredient.Salmon;
 import Manufacturing.Ingredient.Ingredient;
-import Manufacturing.Machine.CanMachine;
-import Manufacturing.Machine.CanTreatmentMachine.IronCanProducingMachine;
+import Manufacturing.Machine.DrugMachine;
+import Manufacturing.Machine.CanTreatmentMachine.DrugProducingMachine;
 import Manufacturing.Machine.GeneralMachine.SalmonFilterMachine;
 import Manufacturing.ProductLine.AbstractCanFactory.IronCanFactory;
 import Manufacturing.ProductLine.FreshLine;
@@ -24,7 +24,7 @@ public class SalmonLine implements FreshLine {
 
     private PretreatmentApp pretreatmentApp = new PretreatmentApp(new SalmonFilterMachine());
     private  List<Ingredient> ingredients=new ArrayList<>();
-    private final CanMachine ironCanMachine = IronCanProducingMachine.getInstance();
+    private final DrugMachine ironCanMachine = DrugProducingMachine.getInstance();
 
     @Override
     public List<Ingredient> preTreat(List<Ingredient> ingredientList) {
@@ -84,7 +84,7 @@ public class SalmonLine implements FreshLine {
 
 
     public static Can produceSample() {
-        CanMachine ironCanProducingMachine = IronCanProducingMachine.getInstance();
+        DrugMachine ironCanProducingMachine = DrugProducingMachine.getInstance();
         Can can = IronCanFactory.getInstance().createBigCan("Salmon");
         ironCanProducingMachine.preTreat(can);
         Ingredient salmon =new Salmon();

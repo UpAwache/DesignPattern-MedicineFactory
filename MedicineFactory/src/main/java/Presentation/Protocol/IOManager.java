@@ -7,9 +7,6 @@ import java.util.*;
 
 /**
  * 实现多语言打印的输出控制器。
- * @author 卓正一
- *
- * <b>实现了单例模式</b>
  */
 public class IOManager {
 
