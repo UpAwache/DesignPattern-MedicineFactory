@@ -1,6 +1,6 @@
 package Management;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 
 /**
  * 工种类，为抽象类，表示罐头生产线工作的基本工种
@@ -30,7 +30,7 @@ public abstract class BaseWorker implements Cloneable{
     * @author 梁乔
     * @date 22:12 2021-10-11
     */
-    public abstract Can completeWork(Can can);
+    public abstract Drug completeWork(Drug can);
 
     /**
     * 获取该工种工人的id

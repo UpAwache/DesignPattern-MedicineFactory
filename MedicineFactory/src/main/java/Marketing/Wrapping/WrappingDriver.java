@@ -2,7 +2,7 @@ package
         Marketing.Wrapping;
 
 import MedicineFactory.MedicineFactory;
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.CanEntity.CanInfoController;
 import Manufacturing.ProductLine.Line.AutomatedLine.CandiedAppleLine;
 import Manufacturing.ProductLine.Line.HerringLine;
@@ -42,7 +42,7 @@ public class WrappingDriver {
                     "The serial number entered is illegal, please re-enter!");
         }
 
-        Can can = null;
+        Drug can = null;
         //根据选择生成对应的罐头;生成stub.
         switch (choice){
             case 1:

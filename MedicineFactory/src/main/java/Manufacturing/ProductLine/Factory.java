@@ -2,7 +2,7 @@ package Manufacturing.ProductLine;
 
 
 import Management.QualityTesting.QualityAssuranceDepartment;
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.ConcreteIngredient.Seasoning.Sugar;
 import Manufacturing.Ingredient.Ingredient;
 import Manufacturing.ProductLine.Line.AutomatedLine.CandiedAppleLine;
@@ -57,7 +57,7 @@ public abstract class Factory {
      * @author 孟繁霖
      * @date 2021-10-11 23:35
      */
-    public final List<Can> produceCan(String canKind, String canName, int materialCount, String produceManner) {
+    public final List<Drug> produceCan(String canKind, String canName, int materialCount, String produceManner) {
 
 
         IOManager.getInstance().print(
@@ -82,10 +82,10 @@ public abstract class Factory {
                     "*************购买失败************",
                     "*************購買失敗************",
                     "*******Failed purchase*******");
-            return new ArrayList<Can>();
+            return new ArrayList<Drug>();
         }
 
-        List<Can> canList;
+        List<Drug> canList;
         //获得相应种类的生产线并进行预处理和生产加工
         if ("fruit".equalsIgnoreCase(canKind) && "candiedApple".equalsIgnoreCase(canName)) {
             List<Ingredient> sugarList = new ArrayList<>();
@@ -108,13 +108,13 @@ public abstract class Factory {
                     "********沒有對應生産線********",
                     "There is no corresponding production line!"
             );
-            return new ArrayList<Can>();
+            return new ArrayList<Drug>();
         }
 
-        List<Can> passedTestCan = new ArrayList<>();
+        List<Drug> passedTestCan = new ArrayList<>();
         // 质检部门介入
         int i = 1;
-        for (Can c :canList) {
+        for (Drug c :canList) {
             // 随机质检
             if (Math.random() > 0.2) {
                 passedTestCan.add(c);

@@ -1,7 +1,7 @@
 package Marketing.Wrapping.Converter;
 
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Marketing.Wrapping.WrappingCanInfo;
 
 import java.util.function.Function;
@@ -15,18 +15,18 @@ import java.util.function.Function;
 
 public class WrappingConverter {
 
-    private Function<Can, WrappingCanInfo> fromCanEntityFunction;
+    private Function<Drug, WrappingCanInfo> fromCanEntityFunction;
 
     public WrappingConverter() {
         fromCanEntityFunction = new FromCanEntityFunction();
     }
 
-    public Function<Can, WrappingCanInfo> getFromCanEntityFunction() {
+    public Function<Drug, WrappingCanInfo> getFromCanEntityFunction() {
         return fromCanEntityFunction;
     }
 
 
-    static class FromCanEntityFunction implements Function<Can, WrappingCanInfo> {
+    static class FromCanEntityFunction implements Function<Drug, WrappingCanInfo> {
         /**
          * 转换器模式,将罐头实例转化为包装罐头信息.
          *
@@ -36,7 +36,7 @@ public class WrappingConverter {
          * @date 2021-10-24 11:18
          */
         @Override
-        public WrappingCanInfo apply(Can can) {
+        public WrappingCanInfo apply(Drug can) {
 
             WrappingCanInfo wrappingCanInfo = new WrappingCanInfo();
             wrappingCanInfo.setCanName(can.getCanName());

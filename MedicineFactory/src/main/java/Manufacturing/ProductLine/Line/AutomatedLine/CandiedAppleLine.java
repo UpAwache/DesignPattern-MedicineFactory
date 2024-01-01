@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine.Line.AutomatedLine;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.ConcreteIngredient.Apple;
 import Manufacturing.Ingredient.ConcreteIngredient.Seasoning.Sugar;
 import Manufacturing.Ingredient.Ingredient;
@@ -57,8 +57,8 @@ public class CandiedAppleLine extends AutomatedLine {
     }
 
     @Override
-    public List<Can> produce(int count,String produceManner) {
-        List<Can> product = new ArrayList<>();
+    public List<Drug> produce(int count,String produceManner) {
+        List<Drug> product = new ArrayList<>();
         //预处理（打印语句）
         apples = preTreat(apples);
         IOManager.getInstance().print(
@@ -68,7 +68,7 @@ public class CandiedAppleLine extends AutomatedLine {
         for (int i = 0; i < apples.size(); i++) {
             try {
                 Ingredient candiedApple = candiedAppleMachine.combine(apples.get(i), sugarList.get(i));
-                Can can = GlassCanFactory.getInstance().createSmallCan("CandiedApple");
+                Drug can = GlassCanFactory.getInstance().createSmallCan("CandiedApple");
                 ironCanProducingMachine.preTreat(can);
                 ironCanProducingMachine.fill(can, candiedApple);
                 ironCanProducingMachine.can(can);
@@ -90,10 +90,10 @@ public class CandiedAppleLine extends AutomatedLine {
     }
 
 
-    public static Can produceSample() {
+    public static Drug produceSample() {
         CandiedAppleMachine candiedAppleMachine = new CandiedAppleMachine();
         GlassCanProducingMachine glassCanProducingMachine = GlassCanProducingMachine.getInstance();
-        Can can = GlassCanFactory.getInstance().createSmallCan("CandiedApple");
+        Drug can = GlassCanFactory.getInstance().createSmallCan("CandiedApple");
 
         glassCanProducingMachine.preTreat(can);
         Ingredient candiedApple = candiedAppleMachine.combine(new Apple(), new Sugar());

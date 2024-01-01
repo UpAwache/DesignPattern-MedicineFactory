@@ -1,7 +1,7 @@
 package Management.HumanResources;
 
 import Management.BaseWorker;
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 
 import java.util.Hashtable;
 

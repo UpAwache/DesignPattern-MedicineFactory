@@ -2,7 +2,7 @@ package
         Mediator;
 
 import Management.HumanResources.TransportDepartment;
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.ProductLine.test.ProductDepartment;
 import Marketing.OrderCenterEntity.OrderCenter;
 import Marketing.OrderEnity.Order;
@@ -143,7 +143,7 @@ public class DepartmentMediator {
      * @author "王立友"
      * @date 2021-10-24 17:05
      */
-    public WrappedCan wrapCan(Can can) {
+    public WrappedCan wrapCan(Drug can) {
 
         WrappedCan wrappedCan = wrappingDepartment.wrapCan(can);
         return wrappedCan;

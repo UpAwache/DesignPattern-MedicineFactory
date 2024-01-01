@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.Ingredient;
 import Manufacturing.ProductLine.Pretreatment.PretreatmentApp;
 

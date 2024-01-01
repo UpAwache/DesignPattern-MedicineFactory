@@ -9,7 +9,7 @@ import Manufacturing.CanEntity.Size.Size;
  * 桥接模式
  * @author 汪明杰
  */
-public class FruitCan extends Can{
+public class FruitCan extends Drug{
 
     public FruitCan(Size s, Material c) {
         super.setSize(s);

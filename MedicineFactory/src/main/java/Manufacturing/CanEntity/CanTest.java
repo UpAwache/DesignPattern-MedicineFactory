@@ -22,7 +22,7 @@ public class CanTest {
                 "# 使用橋接模式",
                 "# Using Bridge Pattern"
         );
-        Can can = new PeachCan(BigSize.getInstance(),IronMaterial.getInstance());
+        Drug can = new PeachCan(BigSize.getInstance(),IronMaterial.getInstance());
         IOManager.getInstance().print("已经使用桥接模式生成测试罐头",
                 "已經使用橋接模式生成測試罐頭",
                 "Test cans have been generated using bridge pattern");

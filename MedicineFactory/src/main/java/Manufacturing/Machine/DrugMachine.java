@@ -1,6 +1,6 @@
 package Manufacturing.Machine;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.Ingredient;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.List;
  */
 public abstract class DrugMachine {
 
-    public abstract void preTreat(Can can);
+    public abstract void preTreat(Drug can);
 
-    public abstract void fill(Can can, Ingredient... ingredients);
+    public abstract void fill(Drug can, Ingredient... ingredients);
 
-    public abstract void can(Can can);
+    public abstract void can(Drug can);
 }

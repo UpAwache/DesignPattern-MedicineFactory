@@ -9,7 +9,7 @@ import Manufacturing.CanEntity.Size.Size;
  * @author 汪明杰
  * @date 2021/10/30 16:05
  */
-public class FreshCan extends Can {
+public class FreshCan extends Drug {
     public FreshCan(Size s, Material c) {
         super.setSize(s);
         super.setMaterial(c);

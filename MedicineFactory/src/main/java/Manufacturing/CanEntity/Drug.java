@@ -35,46 +35,32 @@ import java.util.List;
  * <b>实现了 Prototype 模式</b>
  * <b>内含了 Composite 模式</b> <br>
  * <b>内含了 Decorator 模式</b>
- *
- * @author 卓正一
  */
-public abstract class Can implements Testable, Cloneable, MultiLanguageDescription {
+public abstract class Drug implements Testable, Cloneable, MultiLanguageDescription {
 
     /**
      * 罐头状态，实现了状态模式
-     *
-     * @since 2021-10-11 10:34 PM
      */
     private CanState state;
 
     /**
      * 罐头内部含有的
-     *
-     * @since 2021-10-11 10:35 PM
      */
     List<Ingredient> ingredients;
 
 
     /**
      * 罐头大小，桥接模式。
-     * 实现：汪明杰
-     *
-     * @since 2021-10-12 4:01 PM
      */
     private Size size;
 
     /**
      * 罐头材质，桥接模式。
-     * 实现：汪明杰
-     *
-     * @since 2021-10-12 4:01 PM
      */
     private Material material;
 
     /**
      * 以下三属性是为了多语言输出准备的。
-     *
-     * @since 2021-10-11 11:02 PM
      */
     private String zhCnName;
     private String zhTwName;
@@ -82,34 +68,26 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
 
     /**
      * 保质时间
-     * 实现：汪明杰
-     * @since 2021-10-12 4:54 PM
      */
     private Date shelfTime;
 
     /**
      * 生产时间
-     * 实现：汪明杰
-     * @since 2021-10-12 4:55 PM
      */
     private Date manufactureTime;
 
     /**
      * 最高储存温度
-     * 实现：汪明杰
-     * @since 2021-10-12 4:55 PM
      */
     private int maxTemperature;
 
     /**
      * 最低储存温度
-     * 实现：汪明杰
-     * @since 2021-10-12 4:55 PM
      */
     private int minTemperature;
 
 
-    protected Can() {
+    protected Drug() {
         ingredients = new ArrayList<Ingredient>();
         state = new NotDisinfectedCanState();
     }
@@ -135,8 +113,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
     /**
      * 判断是否过期
      * @return : boolean
-     * @author 汪明杰
-     * @since 2021-10-12 4:56 PM
      */
     public boolean isOverdue(){
         // TODO: 获取公有类的当前时间后，判断罐头是否过期
@@ -147,8 +123,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
     /**
      * 判断温度是否合适
      * @return : boolean
-     * @author 汪明杰
-     * @since 2021-10-12 4:56 PM
      */
     public boolean isTemperatureAppropriate(){
         // TODO: 获取储存箱的温度，判断储存环境是否合适
@@ -157,8 +131,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
 
     /**
      * 接受封罐
-     * @author 卓正一
-     * @since 2021-10-12 4:34 PM
      */
     public void getCanned() {
         state = state.handleCanning();
@@ -167,8 +139,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
     /**
      * 接受填料
      * @param ingredient 填充的一种原料
-     * @author 卓正一
-     * @since 2021-10-12 4:34 PM
      */
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
@@ -177,8 +147,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
 
     /**
      * 接受消毒
-     * @author 卓正一
-     * @since 2021-10-12 4:35 PM
      */
     public void getDisinfection() {
         state = state.handleDisinfection();
@@ -188,8 +156,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
      * 罐头完成其他特殊测试的接口。
      *
      * @return : boolean 是否通过测试。
-     * @author 卓正一
-     * @since 2021-10-11 11:05 PM
      */
     public boolean otherTests() {
         return true;
@@ -198,8 +164,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
     /**
      * TODO: 打印大小、材质的信息
      * @return : java.lang.String
-     * @author 卓正一
-     * @since 2021-10-12 4:32 PM
      */
     @Override
     public String enDescription() {
@@ -225,8 +189,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
      * 获取罐头的状态
      *
      * @return : Manufacturing.CanEntity.CanState.CanState
-     * @author 梁乔
-     * @since 22:40 2021-10-11
      */
     public CanState getCanState() {
         return state;
@@ -238,8 +200,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
      * @param zhCnName 中文名
      * @param zhTwName 繁体中文名
      * @param enName   英文名
-     * @author 卓正一
-     * @since 2021-10-11 11:03 PM
      */
     public void setName(String zhCnName, String zhTwName, String enName) {
         this.zhCnName = zhCnName;
@@ -271,8 +231,6 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
      * 返回当前语言的罐头名字
      *
      * @return : java.lang.String 罐头名
-     * @author 卓正一
-     * @since 2021-10-12 3:44 PM
      */
     public String getCanName() {
         switch (IOManager.getInstance().getLanguage()) {
@@ -347,13 +305,11 @@ public abstract class Can implements Testable, Cloneable, MultiLanguageDescripti
      * 克隆一个罐头
      * 原型模式
      * @return : Can
-     * @author 汪明杰
-     * @since 2021-10-29 9:02 PM
      */
     @Override
-    public Can clone(){
+    public Drug clone(){
         try {
-            Can newCan = (Can)super.clone();
+            Drug newCan = (Drug)super.clone();
 
             // 深拷贝原料
             newCan.ingredients = new ArrayList<>();

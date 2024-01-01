@@ -2,7 +2,7 @@ package
         Storage;
 
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.CanEntity.CanInfoController;
 import Manufacturing.ProductLine.Line.PeachLine;
 import Marketing.OrderEnity.Order;
@@ -37,7 +37,7 @@ public class InventoryDriver {
 
     }
 
-    public static Can getStubCan(){
+    public static Drug getStubCan(){
         return PeachLine.produceSample();
     }
 }

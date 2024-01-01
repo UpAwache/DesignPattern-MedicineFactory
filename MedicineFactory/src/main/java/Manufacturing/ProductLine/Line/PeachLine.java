@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine.Line;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.ConcreteIngredient.Peach;
 import Manufacturing.Ingredient.Ingredient;
 import Manufacturing.Machine.CanTreatmentMachine.GlassCanProducingMachine;
@@ -46,7 +46,7 @@ public class PeachLine implements FruitLine {
     }
 
     @Override
-    public List<Can> produce(int count,String produceManner) {
+    public List<Drug> produce(int count,String produceManner) {
         IOManager.getInstance().print(
                 "*******正在对黄桃进行加工*******",
                 "*******正在對黃桃進行加工*******",
@@ -54,7 +54,7 @@ public class PeachLine implements FruitLine {
         PeachProducer peachProducer = new PeachProducer(produceManner);
         peachProducer.produce();
 
-        List<Can> product=new ArrayList<>();
+        List<Drug> product=new ArrayList<>();
         IOManager.getInstance().print(
                 "# 使用享元模式生产玻璃罐头",
                 "# 使用享元模式生產玻璃罐頭",
@@ -62,7 +62,7 @@ public class PeachLine implements FruitLine {
         );
         for(int i=0;i<count;i++){
             Ingredient ingredient = ingredients.get(i);
-            Can can=GlassCanFactory.getInstance().createBigCan("Peach");
+            Drug can=GlassCanFactory.getInstance().createBigCan("Peach");
             glassCanProducingMachine.preTreat(can);
             glassCanProducingMachine.fill(can,ingredient);
             glassCanProducingMachine.can(can);
@@ -84,9 +84,9 @@ public class PeachLine implements FruitLine {
         );
     }
 
-    public static Can produceSample() {
+    public static Drug produceSample() {
         GlassCanProducingMachine glassCanProducingMachine=new GlassCanProducingMachine();
-        Can can = GlassCanFactory.getInstance().createBigCan("Peach");
+        Drug can = GlassCanFactory.getInstance().createBigCan("Peach");
         glassCanProducingMachine.preTreat(can);
         Ingredient peach =new Peach();
         glassCanProducingMachine.fill(can, peach);

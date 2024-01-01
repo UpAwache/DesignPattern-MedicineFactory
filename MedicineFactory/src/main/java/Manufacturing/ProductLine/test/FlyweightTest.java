@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine.test;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.ProductLine.*;
 import Presentation.Protocol.IOManager;
 
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class FlyweightTest {
     public static void main(String[] args) {
-        List<List<Can>> productList = new ArrayList<>();
+        List<List<Drug>> productList = new ArrayList<>();
 
         IOManager.getInstance().print(
                 "# 分两批次生产三文鱼罐头验证享元模式",

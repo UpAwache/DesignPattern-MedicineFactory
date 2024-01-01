@@ -1,7 +1,7 @@
 package
         Marketing.Wrapping;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Marketing.Wrapping.Cover.WrappingCover;
 
 /**
@@ -15,23 +15,23 @@ public class WrappedCan {
     /**
      * 待包装的罐头;
      */
-    private Can can;
+    private Drug can;
     /**
      * 包装信息;
      */
     private WrappingCover wrappingCover;
 
-    public WrappedCan(Can can, WrappingCover wrappingCover){
+    public WrappedCan(Drug can, WrappingCover wrappingCover){
         this.can = can;
         this.wrappingCover = wrappingCover;
     }
 
 
-    public Can getCan() {
+    public Drug getCan() {
         return can;
     }
 
-    public void setCan(Can can) {
+    public void setCan(Drug can) {
         this.can = can;
     }
 

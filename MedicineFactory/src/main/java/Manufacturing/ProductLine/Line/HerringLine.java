@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine.Line;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.ConcreteIngredient.Herring;
 import Manufacturing.Ingredient.Ingredient;
 import Manufacturing.Machine.DrugMachine;
@@ -45,13 +45,13 @@ public class HerringLine implements FreshLine {
     }
 
     @Override
-    public List<Can> produce(int count,String produceManner) {
+    public List<Drug> produce(int count,String produceManner) {
         IOManager.getInstance().print(
                 "*******正在对鲱鱼进行加工*******",
                 "*******正在對鯡魚進行加工*******",
                 "*******Herring fish is being processed*******");
 
-        List<Can> product=new ArrayList<>();
+        List<Drug> product=new ArrayList<>();
 
         IOManager.getInstance().print(
                 "# 使用享元模式：生产铁制罐头",
@@ -60,7 +60,7 @@ public class HerringLine implements FreshLine {
         );
         for(int i=0;i<count;i++){
             Ingredient ingredient = ingredients.get(i);
-            Can can= IronCanFactory.getInstance().createBigCan("Herring");
+            Drug can= IronCanFactory.getInstance().createBigCan("Herring");
             ironCanProducingMachine.preTreat(can);
             ironCanProducingMachine.fill(can,ingredient);
             ironCanProducingMachine.can(can);
@@ -82,9 +82,9 @@ public class HerringLine implements FreshLine {
         );
     }
 
-    public static Can produceSample() {
+    public static Drug produceSample() {
         DrugMachine ironCanProducingMachine = DrugProducingMachine.getInstance();
-        Can can = IronCanFactory.getInstance().createBigCan("Herring");
+        Drug can = IronCanFactory.getInstance().createBigCan("Herring");
         ironCanProducingMachine.preTreat(can);
         Ingredient herring =new Herring();
         ironCanProducingMachine.fill(can, herring);

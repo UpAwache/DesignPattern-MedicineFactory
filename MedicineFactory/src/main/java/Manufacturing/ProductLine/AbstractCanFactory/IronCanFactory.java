@@ -55,7 +55,7 @@ public class IronCanFactory extends AbstractCanFactory {
      * @return Can
      */
     @Override
-    public Can createSmallCan(String type){
+    public Drug createSmallCan(String type){
 
         if(type.equalsIgnoreCase("Salmon")){
             if (IronCanFactory.smallSalmonCan == null){
@@ -84,7 +84,7 @@ public class IronCanFactory extends AbstractCanFactory {
      * @return Can
      */
     @Override
-    public Can createBigCan(String type){
+    public Drug createBigCan(String type){
 
         if(type.equalsIgnoreCase("Salmon")){
             if (IronCanFactory.bigSalmonCan == null){

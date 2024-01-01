@@ -1,6 +1,6 @@
 package Manufacturing.Machine.CanTreatmentMachine;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.Ingredient;
 import Manufacturing.Machine.DrugMachine;
 import Presentation.Protocol.IOManager;
@@ -14,12 +14,12 @@ import java.util.List;
 public class DrugProducingMachine extends DrugMachine {
 
     @Override
-    public void preTreat(Can can) {
+    public void preTreat(Drug can) {
         can.getDisinfection();
     }
 
     @Override
-    public void fill(Can can, Ingredient... ingredients) {
+    public void fill(Drug can, Ingredient... ingredients) {
         for (Ingredient i :
                 ingredients) {
             can.addIngredient(i);
@@ -27,7 +27,7 @@ public class DrugProducingMachine extends DrugMachine {
     }
 
     @Override
-    public void can(Can can) {
+    public void can(Drug can) {
         can.getCanned();
     }
 

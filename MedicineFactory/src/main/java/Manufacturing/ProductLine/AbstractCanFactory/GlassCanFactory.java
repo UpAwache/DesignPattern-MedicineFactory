@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine.AbstractCanFactory;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.CanEntity.ConcreteCan.CandiedAppleCan;
 import Manufacturing.CanEntity.ConcreteCan.PeachCan;
 import Manufacturing.CanEntity.Material.GlassMaterial;
@@ -55,7 +55,7 @@ public class GlassCanFactory extends AbstractCanFactory {
      * @return Can
      */
     @Override
-    public Can createSmallCan(String type){
+    public Drug createSmallCan(String type){
 
         if(type.equalsIgnoreCase("Peach")){
             if (GlassCanFactory.smallPeachCan == null){
@@ -84,7 +84,7 @@ public class GlassCanFactory extends AbstractCanFactory {
      * @return Can
      */
     @Override
-    public Can createBigCan(String type){
+    public Drug createBigCan(String type){
 
         if(type.equalsIgnoreCase("Peach")){
             if (GlassCanFactory.bigPeachCan == null){

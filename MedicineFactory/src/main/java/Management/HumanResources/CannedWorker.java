@@ -1,7 +1,7 @@
 package Management.HumanResources;
 
 import Management.BaseWorker;
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.CanEntity.CanState.CanState;
 import Manufacturing.CanEntity.CanState.CannedCanState;
 import Manufacturing.CanEntity.CanState.FilledCanState;
@@ -22,7 +22,7 @@ public class CannedWorker extends BaseWorker {
     * @date 22:36 2021-10-11
     */
     @Override
-    public Can completeWork(Can can) {
+    public Drug completeWork(Drug can) {
 
         //由于工人是通过操作机器来改变罐头状态的，而机器还未实现，
         //所以工人肯定是通过调用机器的某些接口改变了罐头的状态，具体细节日后商榷

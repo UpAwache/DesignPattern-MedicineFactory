@@ -1,7 +1,7 @@
 package
         Marketing.Wrapping;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.CanEntity.CanInfoController;
 import Marketing.Wrapping.Builder.WrappingBuilder;
 import Marketing.Wrapping.Builder.WrappingDirector;
@@ -39,7 +39,7 @@ public class WrappingDepartment {
      * @author "王立友"
      * @date 2021-10-24 10:48
      */
-    public WrappingCover printWrappingCover(Can can) {
+    public WrappingCover printWrappingCover(Drug can) {
 
         //生成罐头包装实体信息;
         WrappingCanInfo wrappingCanInfo = convertWrappingCanInfo(can);
@@ -92,7 +92,7 @@ public class WrappingDepartment {
      * @author "王立友"
      * @date 2021-10-24 14:54
      */
-    private WrappingCanInfo convertWrappingCanInfo(Can can) {
+    private WrappingCanInfo convertWrappingCanInfo(Drug can) {
         WrappingConverter wrappingConverter = new WrappingConverter();
         //实现转换器过程的输出.
         IOManager.getInstance().printBrief(
@@ -151,7 +151,7 @@ public class WrappingDepartment {
      * @author "王立友"
      * @date 2021-10-25 1:13
      */
-    public WrappedCan wrapCan(Can can) {
+    public WrappedCan wrapCan(Drug can) {
 
         return new WrappedCan(can, printWrappingCover(can));
     }

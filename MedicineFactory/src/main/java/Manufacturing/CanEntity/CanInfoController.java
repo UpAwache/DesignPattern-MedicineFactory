@@ -48,28 +48,28 @@ public class CanInfoController {
         /*
         * 注册糖渍苹果罐头;
         */
-        Can candiedAppleCan = CandiedAppleLine.produceSample();
+        Drug candiedAppleCan = CandiedAppleLine.produceSample();
         this.register(candiedAppleCan);
         this.registerType(candiedAppleCan, "fruit");
 
         /*
         * 注册黄桃罐头
         */
-        Can peachCan = PeachLine.produceSample();
+        Drug peachCan = PeachLine.produceSample();
         this.register(peachCan);
         this.registerType(peachCan, "fruit");
 
         /*
         * 注册鲱鱼罐头
         */
-        Can herringCan = HerringLine.produceSample();
+        Drug herringCan = HerringLine.produceSample();
         this.register(herringCan);
         this.registerType(herringCan, "fresh");
 
         /*
         * 注册三文鱼罐头
         */
-        Can salmonCan = SalmonLine.produceSample();
+        Drug salmonCan = SalmonLine.produceSample();
         this.register(salmonCan);
         this.registerType(salmonCan, "fresh");
 
@@ -80,7 +80,7 @@ public class CanInfoController {
      * @author 卓正一
      * @since 2021-10-30 11:10 PM
      */
-    public void register(Can can) {
+    public void register(Drug can) {
         registry.put(can.getCanName(), can);
         canList.add(can.getCanName());
 
@@ -94,7 +94,7 @@ public class CanInfoController {
      * @author 卓正一
      * @since 2021-10-30 11:10 PM
      */
-    public void registerType(Can can, String type) {
+    public void registerType(Drug can, String type) {
         canKind.put(can.getCanName(), type);
     }
 
@@ -142,7 +142,7 @@ public class CanInfoController {
      * @author 卓正一
      * @since 2021-10-30 11:12 PM
      */
-    public Class<? extends Can> getClassByName(String name) {
+    public Class<? extends Drug> getClassByName(String name) {
         try {
             return registry.get(name).getClass();
         } catch (NullPointerException e) {
@@ -203,7 +203,7 @@ public class CanInfoController {
         return canList;
     }
 
-    private HashMap<String, Can> registry;
+    private HashMap<String, Drug> registry;
 
     private HashMap<String, String> canKind;
 

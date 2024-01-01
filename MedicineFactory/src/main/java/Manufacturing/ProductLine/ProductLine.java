@@ -1,6 +1,6 @@
 package Manufacturing.ProductLine;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.Ingredient.Ingredient;
 
 import java.util.List;
@@ -31,9 +31,9 @@ public interface ProductLine {
      * @author 孟繁霖
      * @since  2021-10-11 23:42
      */
-    List<Can> produce(int count,String produceManner);
+    List<Drug> produce(int count,String produceManner);
 
-    static Can produceSample() {
+    static Drug produceSample() {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 package Manufacturing.CanEntity.ConcreteCan;
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.ProductLine.AbstractCanFactory.GlassCanFactory;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class PrototypeTest {
     public static void main(String[] args) {
-        List<Can> cans = new ArrayList<>();
+        List<Drug> cans = new ArrayList<>();
 
         for(int i=0;i<10;++i){
             cans.add(GlassCanFactory.getInstance().createBigCan("Peach"));

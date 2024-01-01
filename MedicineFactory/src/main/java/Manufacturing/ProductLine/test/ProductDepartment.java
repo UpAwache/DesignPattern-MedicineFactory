@@ -1,7 +1,7 @@
 package Manufacturing.ProductLine.test;
 
 
-import Manufacturing.CanEntity.Can;
+import Manufacturing.CanEntity.Drug;
 import Manufacturing.CanEntity.CanInfoController;
 import Manufacturing.ProductLine.*;
 import Marketing.OrderEnity.OrderCanInformation;
@@ -46,8 +46,8 @@ public class ProductDepartment {
      * @author 孟繁霖
      * @date 2021-10-30 22:02
      */
-    public List<Can> produce(String canKind, String canName, int materialCount, String produceManner) {
-        List<Can> productList = new ArrayList<>();
+    public List<Drug> produce(String canKind, String canName, int materialCount, String produceManner) {
+        List<Drug> productList = new ArrayList<>();
 
         Factory factory = FactoryProducer.getAbstractFactory(canKind);
         if (factory != null) {
@@ -72,7 +72,7 @@ public class ProductDepartment {
      * @date 2021-10-30 22:03
      */
     public StockCan wrapAndStock(String canKind, String canName, int materialCount, String produceManner) {
-        List<Can> canList = produce(canKind, canName, materialCount, produceManner);
+        List<Drug> canList = produce(canKind, canName, materialCount, produceManner);
         WrappedCan wrappedCan = null;
         if (canList.isEmpty()){
             return null;
@@ -137,7 +137,7 @@ public class ProductDepartment {
     */
     public static void main(String[] args) {
 
-        List<List<Can>> productList = new ArrayList<>();
+        List<List<Drug>> productList = new ArrayList<>();
 
         IOManager.getInstance().print(
                 "# 使用抽象工厂模式、工厂模式：创建生产工厂、生产线并按照模板方法进行生产",
