@@ -11,9 +11,8 @@ import java.util.Date;
 import java.util.Random;
 
 /**
- * 有关状态模式的测试类
- * @author 梁乔
- * @date 2021/11/2 11:09 
+ * 状态模式的测试类
+ * @author 王景岳
  */
 public class StatePatternTest {
     public static void main(String[] args){
@@ -32,13 +31,13 @@ public class StatePatternTest {
         int orderCanInfoNum = r.nextInt(5);
         ArrayList<OrderCanInformation> orderCanInformations = new ArrayList<OrderCanInformation>();
         for(int i = 0; i < orderCanInfoNum; i++){
-            //随机获取罐头类型
+            //随机获取药品类型
             int canType = r.nextInt(4);
-            //随机获取罐头数量
+            //随机获取药品数量
             int count = r.nextInt(100);
-            //获取罐头名称
+            //获取药品名称
             String canName = CanInfoController.getInstance().getCanList().get(canType);
-            //获取罐头价格
+            //获取药品价格
             double price = CanInfoController.getInstance().getCanPriceByName(canName);
             //生成一个子订单
             OrderCanInformation orderCanInformation = new OrderCanInformation(canName,count,price);

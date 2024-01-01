@@ -3,50 +3,37 @@ package Marketing.OrderEnity;
 import Marketing.Promotion.Coupon;
 
 /**
- * @Author 王立友
- * 该类为订单中金额相关信息，包含原始信息与促销活动信息等相关
+ * 订单金额类，包含原金额、促销金额等信息
+ * @Author 王景岳
  */
 
 public class OrderAmount {
-    //原始金额;
-    private double originalAmount;
-
-    //促销金额;
-    private double promotionAmount;
-
-    //促销活动
-    private Coupon coupon;
-
-    //运输费用
-    private double transportationAmount;
+    private double originalAmount; //原始金额
+    private double promotionAmount; //促销金额
+    private Coupon couponType; //促销活动
+    private double transportationAmount; //运费
 
     public OrderAmount(double originalAmount, Coupon coupon){
-
         this.originalAmount = originalAmount;
-        this.coupon = coupon;
-        this. promotionAmount = coupon.getPreferentialPrice(originalAmount);
-        //运输费用默认为每1元订单的费用为0.0021元
-        this.transportationAmount = 0.0021 * promotionAmount;
+        this.couponType = coupon;
+        this.promotionAmount = coupon.getPreferentialPrice(originalAmount);
+        //运费采用促销金额乘上0.0015来计算
+        this.transportationAmount = 0.0015 * promotionAmount;
     }
 
-    public Coupon getCoupon() {
-        return coupon;
+    public Coupon getCouponType() {
+        return couponType;
     }
-
     public double getOriginalAmount() {
         return originalAmount;
     }
-
     public double getPromotionAmount() {
         return promotionAmount;
     }
-
     public double getTransportationAmount() {
         return transportationAmount;
     }
-
     public void setTransportationAmount(double transportationAmount) {
         this.transportationAmount = transportationAmount;
     }
-
 }

@@ -3,9 +3,8 @@ package Marketing.Promotion.Sale;
 import Presentation.Protocol.IOManager;
 
 /**
- * 销售策略：满200减20
- *
- * @author 吴英豪
+ * 一种促销策略：每满200减20元
+ * @author 王景岳
  */
 public class TwoHundredMinusTwenty implements Sale {
     @Override
@@ -22,8 +21,8 @@ public class TwoHundredMinusTwenty implements Sale {
         if (originalPrice >= 200) {
             price = originalPrice - (originalPrice / 200 * 20);
             IOManager.getInstance().print(
-                    "可以享受满200减20的优惠。",
-                    "可以享受滿200減20的優惠。",
+                    "可以享受每满200减20的优惠。",
+                    "可以享受每滿200減20的優惠。",
                     "You can take 20 off the 200 mark.");
             IOManager.getInstance().print(
                     "优惠价格为:" + String.format("%.2f",price),
@@ -31,8 +30,8 @@ public class TwoHundredMinusTwenty implements Sale {
                     "Preferential price is:" + String.format("%.2f",price));
         } else {
             IOManager.getInstance().print(
-                    "抱歉，无法享受满200减20的优惠。",
-                    "抱歉，無法享受滿200減20的優惠。",
+                    "抱歉，无法享受每满200减20的优惠。",
+                    "抱歉，無法享受每滿200減20的優惠。",
                     "You can not take 20 off the 200 mark.");
         }
         return price;

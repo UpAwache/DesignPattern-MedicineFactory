@@ -13,59 +13,31 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * 订单中心，负责订单的CURD
- * 使用到了迭代器模式、单例模式
- * @author 梁乔
- * @date 2021/10/15 15:07 
+ * 订单中心类，管理所有订单，与迭代器模式和单例模式有关
+ * @author 王景岳
  */
 public class OrderCenter implements Container {
 
-    //////////////////////////////////////////
-    /**
-     * 整个工厂的订单列表，需要实时维护
-     */
-    public ArrayList<Order> factoryOrderList;
+    public ArrayList<Order> factoryOrderList; //订单列表
 
-    /**
-     * 订单中心单例
-     */
-    private static OrderCenter orderCenterInstance = new OrderCenter();
+    private static OrderCenter orderCenterInstance = new OrderCenter(); //订单中心单例
     ///////////////////////////////////////////
-
 
     private OrderCenter(){
         factoryOrderList = new ArrayList<Order>();
     }
 
-    /**
-    * 核心功能：创建一个新的订单
-     * @param orderCanInformations : 订单的信息列表
-     * @param latestDeliveryTime :最晚交付时间
-     * @return : void
-    * @author 梁乔
-    * @date 22:10 2021-10-15
-    */
+    //创建一个新的订单
     public void createOneOrder(ArrayList<OrderCanInformation> orderCanInformations, Coupon coupon, Date latestDeliveryTime, String customerAddress){
         Order order = new Order(orderCanInformations,coupon, latestDeliveryTime, customerAddress);
         factoryOrderList.add(order);
     }
 
-    /**
-    *  获取订单中心单例
-     * @return : Marketing.OrderCenterEntity.OrderCenter
-    * @author 梁乔
-    * @date 20:50 2021-10-15
-    */
     public static OrderCenter getInstance(){
         return orderCenterInstance;
     }
 
-    /**
-    * 展示打印当前订单中心的订单数据
-     * @return : void
-    * @author 梁乔
-    * @date 15:30 2021-10-15
-    */
+    //打印当前订单中心的所有订单数据
     public void displayOrderData(){
         IOManager.getInstance().printLanguageIrrelevantContent("-----------------------------------------");
         IOManager.getInstance().print(
@@ -104,7 +76,7 @@ public class OrderCenter implements Container {
             );
             String placingTimeFormat = new String("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat sft = new SimpleDateFormat(placingTimeFormat);
-            String placingTime = sft.format(od.getPlacingTime());
+            String placingTime = sft.format(od.getOrderTime());
             IOManager.getInstance().print(
                     "订单下单时间"+placingTime,
                     "訂單下單時間"+placingTime,
@@ -119,7 +91,7 @@ public class OrderCenter implements Container {
                     "The latest delivery time of the order is:"+latestDeliveryTime
             );
             if(Objects.equals(od.getOrderState().getCNStateName(), "运输中")){
-                String sendingTime = sft.format(od.getSendingTime());
+                String sendingTime = sft.format(od.getSendTime());
                 IOManager.getInstance().print(
                         "订单发货时间:"+sendingTime,
                         "訂單發貨時間:。"+sendingTime,
@@ -129,19 +101,19 @@ public class OrderCenter implements Container {
             else if(Objects.equals(od.getOrderState().getCNStateName(), "已交付")){
                 String deliverTime ="";
                 String sendingTime ="";
-                if(od.getCompletionTime() != null){
-                deliverTime = sft.format(od.getCompletionTime());}
-                if(od.getSendingTime() != null) {
-                    sendingTime = sft.format(od.getSendingTime());
+                if(od.getCompleteTime() != null){
+                deliverTime = sft.format(od.getCompleteTime());}
+                if(od.getSendTime() != null) {
+                    sendingTime = sft.format(od.getSendTime());
                 }
-                if(od.getCompletionTime() != null) {
+                if(od.getCompleteTime() != null) {
                     IOManager.getInstance().print(
                             "订单发货时间:" + sendingTime,
                             "訂單發貨時間:。" + sendingTime,
                             "The delivery time of the order:" + sendingTime
                     );
                 }
-                if(od.getCompletionTime() != null) {
+                if(od.getCompleteTime() != null) {
                     IOManager.getInstance().print(
                             "订单交付时间:" + deliverTime,
                             "訂單交付時間:。" + deliverTime,
@@ -154,19 +126,19 @@ public class OrderCenter implements Container {
                     "訂單明細:",
                     "Order Details:"
             );
-            //对于每个订单，分罐头类型的数量逐个迭代
+            //对于每个订单，分药品类型的数量逐个迭代
             for(Iterator it = od.getIterator(); it.hasNext();){
-                //获取当前迭代订单的当前迭代的订单罐头信息
+                //获取当前迭代订单的当前迭代的订单药品信息
                 OrderCanInformation oci = (OrderCanInformation)it.next();
                 IOManager.getInstance().print(
-                        "罐头类型:"+oci.getCanName(),
-                        "罐頭類型:"+oci.getCanName(),
-                        "Type of Can:"+oci.getCanName()
+                        "药品类型:"+oci.getCanName(),
+                        "藥品類型:"+oci.getCanName(),
+                        "Type of Medicine:"+oci.getCanName()
                 );
                 IOManager.getInstance().print(
-                        "罐头数量："+oci.getCount(),
-                        "罐頭數量:"+oci.getCount(),
-                        "Can Amount:"+oci.getCount()
+                        "药品数量："+oci.getCount(),
+                        "藥品數量:"+oci.getCount(),
+                        "Medicine Amount:"+oci.getCount()
                 );
             }
 
@@ -204,13 +176,8 @@ public class OrderCenter implements Container {
         return pendingOrder;
     }
 
-    /**
-     * 搜索订单中心的某一订单
-     * @param orderId : 订单ID
-     * @return : Marketing.OrderEnity.Order
-     * @author 梁乔
-     * @date 20:23 2021-10-16
-     */
+
+    //搜索订单中心的某一订单
     public  Order orderExists(Long orderId){
         for (Iterator it = getIterator(); it.hasNext();) {
             Order itOrder = (Order) it.next();
@@ -253,9 +220,6 @@ public class OrderCenter implements Container {
         return false;
     }
 
-
-
-
     public boolean startToTransportOneOrder(Long orderId){
         //获取当前订单Id的订单对象
         Order order = orderExists(orderId);
@@ -265,7 +229,7 @@ public class OrderCenter implements Container {
         if(order != null) {
             if (Objects.equals(order.getOrderState().getCNStateName(), "已生产")) {
                 //设置运输时间
-                order.setSendingTime(new Date());
+                order.setSendTime(new Date());
                 //修改订单的状态为运输中状态
                 order.changeOrderState(new TransportingOrderState());
                 IOManager.getInstance().print(
@@ -315,8 +279,8 @@ public class OrderCenter implements Container {
              * *                 订单消费小票                 *
              * *                 订单消费小票                 *
              * *--------------------------------------------*
-             * *                  罐头加工厂                  *
-             * *                 Can factory                    *
+             * *                  药品加工厂                  *
+             * *              Medicine factory               *
              * *                   结账单                    *
              * *                 Check out                      *
              * * 订单号：11010116969                          *
@@ -324,7 +288,7 @@ public class OrderCenter implements Container {
              * * 订单生成时间：Mon Nov 01 14:47:22 CST 2021    *
              * * Generation Time:Mon Nov 01 14:47:22 CST 2021*
              * *=============================================*
-             * * 罐头名称       数量       单价      小计       *
+             * * 药品名称       数量       单价      小计       *
              * *                                            *
              * *=============================================*
              * * 本订单使用八折优惠                             *
@@ -345,9 +309,9 @@ public class OrderCenter implements Container {
             IOManager.getInstance().printLanguageIrrelevantContent("*--------------------------------------------*");
 
             IOManager.getInstance().print(
-                    "*                  罐头加工厂                  *",
-                    "*                  罐頭加工廠                  *",
-                    "*                 Can factory                 *"
+                    "*                  药品加工厂                  *",
+                    "*                  藥品加工廠                  *",
+                    "*               Medicine factory                 *"
             );
             IOManager.getInstance().print(
                     "*                   结账单                    *",
@@ -361,15 +325,15 @@ public class OrderCenter implements Container {
                     "* OrderId"+od.getOrderId()+"                        *"
             );
             IOManager.getInstance().print(
-                    "* 订单生成时间："+od.getPlacingTime()+"   *",
-                    "* 訂單生成時間："+od.getPlacingTime()+"   *",
-                    "*Generation time:"+od.getPlacingTime()+"*"
+                    "* 订单生成时间："+od.getOrderTime()+"   *",
+                    "* 訂單生成時間："+od.getOrderTime()+"   *",
+                    "*Generation time:"+od.getOrderTime()+"*"
             );
             IOManager.getInstance().printLanguageIrrelevantContent("*============================================*");
             IOManager.getInstance().print(
-                    "* 罐头名称       数量       单价      小计       *",
-                    "* 罐頭名稱       數量       單價      小計       *",
-                    "* CanName       Num       Price    Total      *"
+                    "* 药品名称       数量       单价      小计       *",
+                    "* 藥品名稱       數量       單價      小計       *",
+                    "* MedicineName       Num       Price    Total      *"
             );
             for(Iterator it = od.getIterator(); it.hasNext();){
                 OrderCanInformation oci = (OrderCanInformation)it.next();
@@ -378,7 +342,7 @@ public class OrderCenter implements Container {
                 String regex = "^[a-zA-Z]+$";
                 String numStr = String.valueOf(oci.getCount());
                 int lengTwo = numStr.length();
-                //获取罐头的单价
+                //获取药品的单价
                 double numPrice = CanInfoController.getInstance().getCanPriceByName(oci.getCanName());
                 double totalPrice = numPrice * oci.getCount();//商品总价
                 String numTotalOfStr = String.valueOf(totalPrice);
@@ -413,14 +377,14 @@ public class OrderCenter implements Container {
             }
 
             IOManager.getInstance().printLanguageIrrelevantContent("*============================================*");
-            if(od.getCouponFlag() == 1) {
+            if(od.getCouponType() == 1) {
                 IOManager.getInstance().print(
                         "* 本订单使用八折优惠                            *",
                         "* 本訂單使用八折優惠                            *",
                         "* This order uses a 20% discount              *"
                 );
             }
-            else if(od.getCouponFlag() == 0){
+            else if(od.getCouponType() == 0){
                 IOManager.getInstance().print(
                         "* 本订单使用满一百减二十优惠                      *",
                         "* 本訂單使用滿一百減二十優惠                      *",
@@ -480,7 +444,7 @@ public class OrderCenter implements Container {
         if(order != null) {
             if (Objects.equals(order.getOrderState().getCNStateName(), "运输中")) {
                 //设置交付的时间
-                order.setCompletionTime(new Date());
+                order.setCompleteTime(new Date());
                 //修改订单的状态为交付状态               
                 order.changeOrderState(new DeliveredOrderState());
                 IOManager.getInstance().print(
@@ -507,33 +471,19 @@ public class OrderCenter implements Container {
         return false;
     }
 
-    /**
-    * 获取订单中心的迭代器，实例化一个订单迭代器
-     * @return : Marketing.Iterator
-    * @author 梁乔
-    * @date 15:17 2021-10-15
-    */
+    //获取订单中心的迭代器，实例化一个订单迭代器
     @Override
     public Iterator getIterator() {
         return new OrderIterator();
         //此时新的迭代器index默认初始化为0
     }
 
-    /**
-    * Nested class 订单迭代器，用于订单的遍历和查找
-    * @author 梁乔
-    * @date 2021-10-15 15:17
-    */
+
+    //订单迭代器类
     private class OrderIterator implements Iterator{
 
         int index;
 
-        /**
-        * 当前index是否有下一个元素
-         * @return : boolean
-        * @author 梁乔
-        * @date 15:18 2021-10-15
-        */
         @Override
         public boolean hasNext() {
             if(index < factoryOrderList.size())
@@ -541,12 +491,6 @@ public class OrderCenter implements Container {
             return false;
         }
 
-        /**
-        * 获取迭代器的下一个元素
-         * @return : java.lang.Object
-        * @author 梁乔
-        * @date 15:26 2021-10-15
-        */
         @Override
         public Object next() {
             if(this.hasNext()){

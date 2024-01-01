@@ -6,15 +6,12 @@ import Presentation.Protocol.IOManager;
 
 /**
  * 策略模式测试类
- *模拟打折营销的情景
- *
- * @author 吴英豪
- * @since 2021/10/27 07:57
+ * @author 王景岳
  */
 public class SaleTest {
     public static void main(String[] args) {
-        Double price1 = 100.00;
-        Double price2 = 200.00;
+        Double price1 = 150.00;
+        Double price2 = 300.00;
 
         IOManager.getInstance().print(
                 "需要购买两种商品，价格分别为:" + price1 + "," + price2 + '\n',

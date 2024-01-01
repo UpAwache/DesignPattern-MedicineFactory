@@ -3,9 +3,8 @@ package Marketing.Promotion.Sale;
 import Presentation.Protocol.IOManager;
 
 /**
- * 具体的销售策略 - 打八折
- *
- * @author 吴英豪
+ * 一种促销策略：打八折
+ * @author 王景岳
  */
 public class TwentyPercentOff implements Sale {
     @Override

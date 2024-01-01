@@ -3,9 +3,8 @@ package Marketing.OrderEnity;
 import Presentation.Protocol.IOManager;
 
 /**
- * 订单状态：已下单，表示刚下单，未生产，未运输，未交付
- * @author 梁乔
- * @date 2021/10/15 9:36 
+ * 四种订单状态
+ * @author 王景岳
  */
 public class OrderedOrderState extends OrderState{
 
@@ -52,38 +51,22 @@ public class OrderedOrderState extends OrderState{
     );
     }
 
-    /**
-     * 获取订单状态的中文名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:10 2021-10-15
-     */
+    //获取订单状态的中文名称
     @Override
     public String getCNStateName(){
         return "已下单";
     }
 
-    /**
-     *  获取订单状态的繁体名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:11 2021-10-15
-     */
+
+    //获取订单状态的繁体名称
     @Override
     public String getTWStateName(){
         return "已下單";
     }
 
-    /**
-     * 获取订单状态的英文名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:37 2021-10-15
-     */
+    //获取订单状态的英文名称
     @Override
     public String getENStateName(){
         return "Ordered";
     }
-
-
 }

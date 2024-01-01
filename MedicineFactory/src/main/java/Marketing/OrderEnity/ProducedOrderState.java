@@ -3,14 +3,8 @@ package Marketing.OrderEnity;
 import Presentation.Protocol.IOManager;
 
 /**
-
-
-import Presentation.Protocol.OutputManager;
-
-/**
- * 订单已经完成生产的状态，称为：已生产
- * @author 梁乔
- * @date 2021/10/15 10:06 
+ * 订单状态类：已生产
+ * @author 王景岳
  */
 public class ProducedOrderState extends OrderState{
     @Override
@@ -56,34 +50,20 @@ public class ProducedOrderState extends OrderState{
         );
     }
 
-    /**
-     * 获取订单状态的中文名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:10 2021-10-15
-     */
+
+    //获取订单状态的中文名称
     @Override
     public String getCNStateName(){
         return "已生产";
     }
 
-    /**
-     *  获取订单状态的繁体名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:11 2021-10-15
-     */
+    //获取订单状态的繁体名称
     @Override
     public String getTWStateName(){
         return "已生產";
     }
 
-    /**
-     * 获取订单状态的英文名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:37 2021-10-15
-     */
+    //获取订单状态的英文名称
     @Override
     public String getENStateName(){
         return "Produced";

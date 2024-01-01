@@ -3,12 +3,8 @@ package Marketing.OrderEnity;
 import Presentation.Protocol.IOManager;
 
 /**
-
-
-/**
- * 订单状态：已交付
- * @author 梁乔
- * @date 2021/10/15 10:36 
+ * 订单状态类：已交付
+ * @author 王景岳
  */
 public class DeliveredOrderState extends OrderState{
     @Override
@@ -53,34 +49,16 @@ public class DeliveredOrderState extends OrderState{
         );
     }
 
-    /**
-    * 获取订单状态的中文名称
-     * @return : java.lang.String
-    * @author 梁乔
-    * @date 21:10 2021-10-15
-    */
     @Override
     public String getCNStateName(){
         return "已交付";
     }
 
-    /**
-    *  获取订单状态的繁体名称
-     * @return : java.lang.String
-    * @author 梁乔
-    * @date 21:11 2021-10-15
-    */
     @Override
     public String getTWStateName(){
         return "已交付";
     }
 
-    /**
-    * 获取订单状态的英文名称
-     * @return : java.lang.String
-    * @author 梁乔
-    * @date 21:37 2021-10-15
-    */
     @Override
     public String getENStateName(){
         return "Delivered";

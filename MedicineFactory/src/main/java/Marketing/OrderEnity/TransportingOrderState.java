@@ -3,16 +3,10 @@ package Marketing.OrderEnity;
 import Presentation.Protocol.IOManager;
 
 /**
-
-
-/**
- * 订单状态：运输中
- * @author 梁乔
- * @date 2021/10/15 10:31 
+ * 订单状态类：正在运输
+ * @author 王景岳
  */
 public class TransportingOrderState extends OrderState{
-
-
     @Override
     public boolean isProduced() {
         return true;
@@ -56,34 +50,19 @@ public class TransportingOrderState extends OrderState{
         changeOrderState(order,new DeliveredOrderState());//修改相应的订单状态
     }
 
-    /**
-     * 获取订单状态的中文名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:10 2021-10-15
-     */
+    //获取订单状态的中文名称
     @Override
     public String getCNStateName(){
         return "运输中";
     }
 
-    /**
-     *  获取订单状态的繁体名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:11 2021-10-15
-     */
+    //获取订单状态的繁体名称
     @Override
     public String getTWStateName(){
         return "運輸中";
     }
 
-    /**
-     * 获取订单状态的英文名称
-     * @return : java.lang.String
-     * @author 梁乔
-     * @date 21:37 2021-10-15
-     */
+    //获取订单状态的英文名称
     @Override
     public String getENStateName(){
         return "Transporting";
