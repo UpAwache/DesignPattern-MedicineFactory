@@ -1,0 +1,218 @@
+package Manufacturing.CanEntity;
+
+import Manufacturing.ProductLine.Line.AutomatedLine.CandiedAppleLine;
+import Manufacturing.ProductLine.Line.HerringLine;
+import Manufacturing.ProductLine.Line.PeachLine;
+import Manufacturing.ProductLine.Line.SalmonLine;
+import Presentation.Protocol.IOManager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * 管理罐头信息，主要是为了提供罐头价格等
+ *
+ * @author 卓正一
+ * @since  2021/10/29 10:55 PM
+ */
+public class CanInfoController {
+
+    private static final CanInfoController infoController;
+
+    public static CanInfoController getInstance() {
+        return infoController;
+    }
+
+    static {
+        infoController = new CanInfoController();
+    }
+
+    /**
+     * 初始化，在这个函数内登记罐头
+     * @author 卓正一
+     * @since 2021-10-30 11:09 PM
+     */
+    private CanInfoController() {
+        this.canList=new ArrayList<>();
+        this.registry = new HashMap<>();
+        this.canKind = new HashMap<>();
+        this.enNameMap = new HashMap<>();
+
+        IOManager.getInstance().print(
+                "* 初始化所有罐头信息，所有生产线正在生产样品。",
+                "* 初始化所有罐頭資訊，所有生產線正在生產樣品。",
+                "* Initialize all can information, all production lines are producing samples."
+        );
+
+        /*
+        * 注册糖渍苹果罐头;
+        */
+        Drug candiedAppleCan = CandiedAppleLine.produceSample();
+        this.register(candiedAppleCan);
+        this.registerType(candiedAppleCan, "fruit");
+
+        /*
+        * 注册黄桃罐头
+        */
+        Drug peachCan = PeachLine.produceSample();
+        this.register(peachCan);
+        this.registerType(peachCan, "fruit");
+
+        /*
+        * 注册鲱鱼罐头
+        */
+        Drug herringCan = HerringLine.produceSample();
+        this.register(herringCan);
+        this.registerType(herringCan, "fresh");
+
+        /*
+        * 注册三文鱼罐头
+        */
+        Drug salmonCan = SalmonLine.produceSample();
+        this.register(salmonCan);
+        this.registerType(salmonCan, "fresh");
+
+    }
+
+    /**
+     * 登记罐头的操作委托给这个函数
+     * @author 卓正一
+     * @since 2021-10-30 11:10 PM
+     */
+    public void register(Drug can) {
+        registry.put(can.getCanName(), can);
+        canList.add(can.getCanName());
+
+        enNameMap.put(can.zhCnDescription(), can.enDescription());
+        enNameMap.put(can.zhTwDescription(), can.enDescription());
+        enNameMap.put(can.enDescription(), can.enDescription());
+    }
+
+    /**
+     * 登记罐头种类，通过生产线工厂调用
+     * @author 卓正一
+     * @since 2021-10-30 11:10 PM
+     */
+    public void registerType(Drug can, String type) {
+        canKind.put(can.getCanName(), type);
+    }
+
+    /**
+     * 通过罐头的名字获取这个罐头的价格
+     * @return : double 罐头价格
+     * @author 卓正一
+     * @since 2021-10-30 11:10 PM
+     */
+    public double getCanPriceByName(String name) {
+        try {
+            return registry.get(name).getCanCost() * 1.2;
+        } catch (NullPointerException e) {
+            IOManager.getInstance().errorMassage(
+                    "不存在" + name + "这种罐头",
+                    "不存在" + name + "這種罐頭",
+                    "No can named "  + name
+                    );
+            return 0.;
+        }
+    }
+
+    /**
+     * 通过罐头的名字获取罐头的种类，种类主要确定了产生哪种流水线
+     * @return : java.lang.String 流水线的种类，现在有 fresh 和 fruit
+     * @author 卓正一
+     * @since 2021-10-30 11:11 PM
+     */
+    public String getCanType(String name) {
+        try {
+            return canKind.get(name);
+        } catch (NullPointerException e) {
+            IOManager.getInstance().errorMassage(
+                    "不存在" + name + "这种罐头",
+                    "不存在" + name + "這種罐頭",
+                    "No can named "  + name
+            );
+            return "";
+        }
+    }
+
+    /**
+     * 通过罐头的名字获取罐头对应的 Java 类
+     * @return : 罐头的类，主要通过反射机制实现
+     * @author 卓正一
+     * @since 2021-10-30 11:12 PM
+     */
+    public Class<? extends Drug> getClassByName(String name) {
+        try {
+            return registry.get(name).getClass();
+        } catch (NullPointerException e) {
+            IOManager.getInstance().errorMassage(
+                    "不存在" + name + "这种罐头",
+                    "不存在" + name + "這種罐頭",
+                    "No can named "  + name
+            );
+            return null;
+        }
+    }
+
+    public String getCanEnIngredientType(String arbitraryName) {
+        try {
+            StringBuilder modifiedCanName = new StringBuilder(enNameMap.get(arbitraryName));
+            String[] canNames = modifiedCanName.toString().split(" ");
+            modifiedCanName = new StringBuilder();
+            for (int i = 0; i < canNames.length - 1; i++) {
+                modifiedCanName.append(canNames[i]);
+            }
+            return modifiedCanName.toString();
+        } catch (NullPointerException e) {
+            IOManager.getInstance().errorMassage(
+                    "不存在" + arbitraryName + "这种罐头",
+                    "不存在" + arbitraryName + "這種罐頭",
+                    "No can named "  + arbitraryName
+            );
+            return null;
+        }
+    }
+
+    /**
+     * 通过任意一种名字获取罐头的英文名，主要是让机器能够读懂
+     * @return : java.lang.String
+     * @author 卓正一
+     * @since 2021-10-30 11:12 PM
+     */
+    public String getEnNameOfCan(String arbitraryName) {
+        try {
+            return enNameMap.get(arbitraryName);
+        } catch (NullPointerException e) {
+            IOManager.getInstance().errorMassage(
+                    "不存在" + arbitraryName + "这种罐头",
+                    "不存在" + arbitraryName + "這種罐頭",
+                    "No can named "  + arbitraryName
+            );
+            return null;
+        }
+    }
+
+    /**
+     * 获取所有罐头名字的列表
+     * @return : 罐头名字列表
+     * @author 卓正一
+     * @since 2021-10-30 11:13 PM
+     */
+    public List<String> getCanList() {
+        return canList;
+    }
+
+    private HashMap<String, Drug> registry;
+
+    private HashMap<String, String> canKind;
+
+    private List<String> canList;
+
+    private HashMap<String, String> enNameMap;
+
+    public static void main(String[] args) {
+        CanInfoController canInfoController = CanInfoController.getInstance();
+        System.out.println(canInfoController.getCanPriceByName("糖渍苹果罐头"));
+    }
+}
